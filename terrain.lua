@@ -13,14 +13,15 @@ function terrain:load()
 end
 
 function terrain:render(x, y)
-	altitude = utils.noise(x, y, 70) * 200 - 130
+	altitude = (utils.noise(x, y, 300) * utils.noise(x, y, 70) * 200 - 90) * utils.noise(x, y, 30) + 5
 	if altitude > 0 then
 		return utils.pixelFromTexture(x, y, self.assets.sand)
 	end
 
+
 	local r1,g1,b1 = utils.pixelFromTexture(x, y, self.assets.water)
 	local r2,g2,b2 = utils.pixelFromTexture(x, y, self.assets.sand)
-	return utils.mergePixels(r1,g1,b1, r2,g2,b2, (altitude + 15) / 25)
+	return utils.mergePixels(r1,g1,b1, r2,g2,b2, (altitude + 10) / 25)
 end
 
 return terrain
