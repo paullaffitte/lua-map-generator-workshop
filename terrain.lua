@@ -13,7 +13,8 @@ function terrain:load()
 end
 
 function terrain:render(x, y)
-	altitude = (utils.noise(x, y, 300) * utils.noise(x, y, 70) * 200 - 90) * utils.noise(x, y, 30) + 5
+	contientAltitude = math.tanh(utils.noise(x, y, 500) * 3 - 1.5) * 1.5
+	altitude = (contientAltitude * utils.noise(x, y, 70) * 200 - 90) * utils.noise(x, y, 30) + 5
 	if altitude > 0 then
 		return utils.pixelFromTexture(x, y, self.assets.sand)
 	end
