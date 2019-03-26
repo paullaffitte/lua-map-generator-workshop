@@ -13,7 +13,7 @@ function terrain:load()
 end
 
 function terrain:render(x, y)
-	if x - y + love.math.random(0, 100) > 0 then
+	if utils.noise(x, y, 30) > 0.5 then
 		return utils.pixelFromTexture(x, y, self.assets.water)
 	end
 	return utils.pixelFromTexture(x, y, self.assets.sand)

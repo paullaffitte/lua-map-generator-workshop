@@ -9,13 +9,9 @@ function utils.pixelFromTexture(x, y, texture)
 	return texture:getPixel(x, y)
 end
 
-local noiseSeed = {
-	x = love.math.random(),
-	y = love.math.random()
-}
-
-function utils.noise(x, y)
-	return love.math.noise(x + noiseSeed.x, y + noiseSeed.y)
+local seed = love.math.random(0, 10000)
+function utils.noise(x, y, scale)
+	return love.math.noise(x / scale, y / scale, seed)
 end
 
 return utils
