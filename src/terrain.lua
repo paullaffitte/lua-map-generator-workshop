@@ -21,21 +21,19 @@ function terrain:render(x, y)
 	altitude = altitude * 320
 
 	if altitude > 60 then
-		return utils.pixelFromTexture(x, y, self.assets.snow)
+		return utils.mergeTextures(x, y, self.assets.stone, self.assets.snow, (altitude - 55) / 15)
 	end
 	if altitude > 30 then
 		return utils.pixelFromTexture(x, y, self.assets.stone)
 	end
-	if altitude > 3 then
+	if altitude > 4 then
 		return utils.pixelFromTexture(x, y, self.assets.grass)
 	end
 	if altitude > 0 then
-		return utils.pixelFromTexture(x, y, self.assets.sand)
+		return utils.mergeTextures(x, y, self.assets.sand, self.assets.grass, (altitude - 2) / 2)
 	end
 
-	local r1,g1,b1 = utils.pixelFromTexture(x, y, self.assets.water)
-	local r2,g2,b2 = utils.pixelFromTexture(x, y, self.assets.sand)
-	return utils.mergePixels(r1,g1,b1, r2,g2,b2, (altitude + 10) / 25)
+	return utils.mergeTextures(x, y, self.assets.water, self.assets.sand, (altitude + 10) / 25)
 end
 
 return terrain

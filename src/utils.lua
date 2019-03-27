@@ -16,6 +16,12 @@ function utils.mergePixels(r1,g1,b1, r2,g2,b2, ratio)
 	return r1 * (1 - ratio) + r2 * ratio, g1 * (1 - ratio) + g2 * ratio, b1 * (1 - ratio) + b2 * ratio
 end
 
+function utils.mergeTextures(x, y, t1, t2, ratio)
+	local r1,g1,b1 = utils.pixelFromTexture(x, y, t1)
+	local r2,g2,b2 = utils.pixelFromTexture(x, y, t2)
+	return utils.mergePixels(r1,g1,b1, r2,g2,b2, ratio)
+end
+
 function utils.valueToPixel(value, min, max)
 	max = max - min
 	value = math.min(max, math.max(0, value - min)) / max
