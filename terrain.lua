@@ -14,8 +14,12 @@ function terrain:load()
 end
 
 function terrain:render(x, y)
-	contientAltitude = math.tanh(utils.noise(x, y, 500) * 3 - 1.5) * 1.5
-	altitude = (contientAltitude * utils.noise(x, y, 70) * 300 - 90) * utils.noise(x, y, 30) + 5
+	contientAltitude = utils.contrast(utils.noise(x, y, 500) - 0.15, 4)
+	noise1 = utils.contrast(utils.noise(x, y, 70), 0.7)
+	noise2 = utils.contrast(utils.noise(x, y, 30), 0.4)
+	altitude = (contientAltitude * noise1 - 0.35) * noise2
+	altitude = altitude * 320
+
 	if altitude > 60 then
 		return utils.pixelFromTexture(x, y, self.assets.snow)
 	end
@@ -28,7 +32,6 @@ function terrain:render(x, y)
 	if altitude > 0 then
 		return utils.pixelFromTexture(x, y, self.assets.sand)
 	end
-
 
 	local r1,g1,b1 = utils.pixelFromTexture(x, y, self.assets.water)
 	local r2,g2,b2 = utils.pixelFromTexture(x, y, self.assets.sand)
