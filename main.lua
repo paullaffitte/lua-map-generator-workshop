@@ -1,4 +1,5 @@
 local terrain = require "terrain"
+local utils = require "utils"
 
 local size = { height = 720, width = 1280 }
 local chunkSize = 128
@@ -10,6 +11,10 @@ function love.load()
 	output 		= {}
 
 	terrain:load()
+	if arg[2] ~= nil then
+		utils.seed = tonumber(arg[2])
+	end
+	print("seed:", utils.seed)
 end
 
 function toChunkPosition(x, y)

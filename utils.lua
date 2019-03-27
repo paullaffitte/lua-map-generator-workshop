@@ -1,4 +1,6 @@
-local utils = {}
+local utils = {
+	seed = love.math.random(0, 1000000)
+}
 
 function utils.worldToTexPosition(x, y, texture)
 	return x % texture:getWidth(), y % texture:getHeight()
@@ -14,9 +16,18 @@ function utils.mergePixels(r1,g1,b1, r2,g2,b2, ratio)
 	return r1 * (1 - ratio) + r2 * ratio, g1 * (1 - ratio) + g2 * ratio, b1 * (1 - ratio) + b2 * ratio
 end
 
-local seed = love.math.random(0, 10000)
+function utils.valueToPixel(value, min, max)
+	max = max - min
+	value = math.min(max, math.max(0, value - min)) / max
+	return value, value, value
+end
+
+function utils.contrast(value, factor)
+	return math.tanh(factor * value - (factor / 2)) + 0.5
+end
+
 function utils.noise(x, y, scale)
-	return love.math.noise(x / scale, y / scale, seed)
+	return love.math.noise(x / scale, y / scale, utils.seed)
 end
 
 return utils
