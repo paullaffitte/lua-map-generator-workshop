@@ -18,16 +18,23 @@ You can find at the root of the repository three folders.
 To launch the generator, you obviously need to have [lua](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux) and [LÖVE2D](https://love2d.org) installed. Then you can run love in the root of this repository with `love .` and you can even give a specific [seed](https://en.wikipedia.org/wiki/Random_seed) to your generator with `love . 8436`
 
 ### The src folder
-In the src folder, you can found the `terrain.lua` file, it's in this file that you're expected to code. But feel free to look at the other files, you could learn some interesting stuff, like how [chunks](https://minecraft.gamepedia.com/Chunk) works ;)
+In the src folder, you can found the `terrain.lua` file, it's in this file that you're expected to code. But feel free to look at the other files, you could learn some interesting stuff, like how [chunks](https://minecraft.gamepedia.com/Chunk) works.
 
 `game.lua` contains the main loop and handle rendering using the `terrain:render` function. `utils.lua` contains some functions that you could find useful.
 
 ## Make some noise !
 
 ### What is perlin noise ?
+[Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise) is a algorithm that generate noise with a pseudo-random appearance, yet all of its visual details are the same size. It can be use in any dimensions. This function is only pseudo-random and not random, therefore it can be represented in a mathematical way since for an input A, it will always return an output B, thus f(A) = B.
+
+![perlin noise](https://upload.wikimedia.org/wikipedia/commons/d/da/Perlin_noise.jpg)
 
 ### Perlin how to
-// how to generate a perlin noise and show it with utils functions + contrast
+You can find a function `utils:noise(x, y)` in `utils.lua`, this function wrap a 3D perlin noise from LÖVE2D, the third dimension being used as a seed. The function takes two parameters which are the coordinates of the point to generate from the perlin noise. It can easily be used in `terrain:render(x, y)`, since they share the same prototype.
+
+Now that you know how to generate noise, it's time to render it! You just have to return the color that you want at the position `(x, y)` in `terrain:render`, just like that `return 0, 0.7, 0.3`. The values should stay between 0 and 1.
+
+A pretty easy way to debug your values is to use the function `utils:valueToPixel(value, min, max)`. It takes a `value` and return a pixel in gray scale with black being `min` and white being `max`.
 
 ## Get down to business
 
