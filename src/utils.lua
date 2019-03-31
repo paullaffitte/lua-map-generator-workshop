@@ -23,13 +23,19 @@ function utils.mergeTextures(x, y, t1, t2, ratio)
 end
 
 function utils.valueToPixel(value, min, max)
+	if min == nil then
+		min = 0
+	end
+	if max == nil then
+		max = 1
+	end
 	max = max - min
 	value = math.min(max, math.max(0, value - min)) / max
 	return value, value, value
 end
 
 function utils.contrast(value, factor)
-	return math.tanh(factor * value - (factor / 2)) + 0.5
+	return (value - 0.5) * factor + 0.5
 end
 
 function utils.noise(x, y, scale)

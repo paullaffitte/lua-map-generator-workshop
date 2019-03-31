@@ -14,7 +14,7 @@ function terrain:load()
 end
 
 function terrain:render(x, y)
-	contientAltitude = utils.contrast(utils.noise(x, y, 500) - 0.15, 4)
+	contientAltitude = utils.contrast(utils.noise(x, y, 500) - 0.15, 3.8)
 	noise1 = utils.contrast(utils.noise(x, y, 70), 0.7)
 	noise2 = utils.contrast(utils.noise(x, y, 30), 0.4)
 	altitude = (contientAltitude * noise1 - 0.35) * noise2
