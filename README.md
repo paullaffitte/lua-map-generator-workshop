@@ -30,16 +30,29 @@ In the src folder, you can found the `terrain.lua` file, it's in this file that 
 ![perlin noise](https://upload.wikimedia.org/wikipedia/commons/d/da/Perlin_noise.jpg)
 
 ### Perlin how to
-You can find a function `utils:noise(x, y)` in `utils.lua`, this function wrap a 3D perlin noise from LÖVE2D, the third dimension being used as a seed. The function takes two parameters which are the coordinates of the point to generate from the perlin noise. It can easily be used in `terrain:render(x, y)`, since they share the same prototype.
+You can find a function `utils.noise(x, y)` in `utils.lua`, this function wrap a 3D perlin noise from LÖVE2D, the third dimension being used as a seed. The function takes two parameters which are the coordinates of the point to generate from the perlin noise. It can easily be used in `terrain:render(x, y)`, since they share the same prototype.
 
-Now that you know how to generate noise, it's time to render it! You just have to return the color that you want at the position `(x, y)` in `terrain:render`, just like that `return 0, 0.7, 0.3`. The values should stay between 0 and 1.
+Now that we know how to generate noise, it's time to render it! You just have to return the color that you want at the position `(x, y)` in `terrain:render`, just like that `return 0, 0.7, 0.3`. The values should stay between 0 and 1.
 
-A pretty easy way to debug your values is to use the function `utils:valueToPixel(value, min, max)`. It takes a `value` and return a pixel in gray scale with black being `min` and white being `max`.
+A pretty easy way to debug your values is to use the function `utils.valueToPixel(value, min, max)`. It takes a `value` and return a pixel in gray scale with black being `min` and white being `max`.
 
 ## Get down to business
 
 ### Hawaii
-// create island with pixelFromTexture and mergePixels
+Let's generate an island! To do so, let's imagine that the noise that we are generating correspond to the altitude of our map, with the sea level being 0.75, so 75% of our map will be water, the remaning 25% being earth.
+
+You can use the fonction `utils.pixelFromTexture(x, y, texture)` to get a pixel from a texture of `terrain.assets`. Try to render either water or grass depending on the altitude. You can also merge easily two textures with `utils.mergeTextures(x, y, t1, t2, ratio)`
+
+### Tweak parameters
+You should get a pretty wierd result for now but as you can see, there is water and grass. Yey, all that we wanted! But maybe you would like something looking more like islands. First of all, you could use several noises with different scales as described [here](https://flafla2.github.io/2014/08/09/perlinnoise.html). You can combine them in several ways depending on what you are trying to do, by sum, by average, by multiplication.
+
+![perlin noises 1D](https://flafla2.github.io/img/2014-08-09-perlinnoise/octave01.png)
+
+![combined perlin noises 1D](https://flafla2.github.io/img/2014-08-09-perlinnoise/octave02.png)
+
+You can also apply modifications on noises, maybe adjusting the contrast with `utils.contrast(value, factor)`, it's a mathematical function represented as `contrast(value, factor) = (value - 0.5) * factor + 0.5`.
+
+![contrast(value, factor) = (value - 0.5) * factor + 0.5](https://github.com/paullaffitte/lua-map-generator-workshop/blob/master/example/contrast.gif)
 
 ### Improvements
 // temperature generation
