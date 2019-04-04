@@ -15,7 +15,9 @@ You can find at the root of the repository three folders.
 - [`src`](https://github.com/paullaffitte/lua-map-generator-workshop/tree/master/src) you already know ;)
 
 ### Launch the generator
-To launch the generator, you obviously need to have [lua](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux) and [LÖVE2D](https://love2d.org) installed. Then you can run love in the root of this repository with `love .` and you can even give a specific [seed](https://en.wikipedia.org/wiki/Random_seed) to your generator with `love . 8436`
+To launch the generator, you obviously need to have [lua](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux) and [LÖVE2D](https://love2d.org) installed. Then you can run love in the root of this repository with `love .` and you can even give a specific [seed](https://en.wikipedia.org/wiki/Random_seed) to your generator with `love . 8436`.
+
+If somewhere you get lost, you can run the example project by running the `start.sh` script in the `example` folder and look at the sources. But if you want to enjoy this workshop I highly encourage you to write your own code! Don't just copy paste, at the end it's often a waste of time.
 
 ### The src folder
 In the src folder, you can found the `terrain.lua` file, it's in this file that you're expected to code. But feel free to look at the other files, you could learn some interesting stuff, like how [chunks](https://minecraft.gamepedia.com/Chunk) works.
