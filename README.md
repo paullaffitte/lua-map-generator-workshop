@@ -2,7 +2,7 @@
 
 This workshop will introduce you to 2D map generation in [lua](https://www.lua.org) language, with the help of [LÖVE2D](https://love2d.org).
 
-Here is an example of a result that you could obtain.
+Here is an example of what you could obtain.
 ![island](https://github.com/paullaffitte/lua-map-generator-workshop/blob/master/example/island.png)
 
 ## What is map generation ?
@@ -10,7 +10,7 @@ Map generation is a powerful technique used in many games to create map or parts
 
 ## The boilerplate architecture
 You can find at the root of the repository three folders.
-- [`assets`](https://github.com/paullaffitte/lua-map-generator-workshop/tree/master/assets) basic assets that you can use to quickly bootstrap you generator
+- [`assets`](https://github.com/paullaffitte/lua-map-generator-workshop/tree/master/assets) basic assets to quickly bootstrap you generator
 - [`example`](https://github.com/paullaffitte/lua-map-generator-workshop/tree/master/example) example project
 - [`src`](https://github.com/paullaffitte/lua-map-generator-workshop/tree/master/src) you already know ;)
 
@@ -44,7 +44,7 @@ Let's generate an island! To do so, let's imagine that the noise that we are gen
 You can use the fonction `utils.pixelFromTexture(x, y, texture)` to get a pixel from a texture of `terrain.assets`. Try to render either water or grass depending on the altitude. You can also merge easily two textures with `utils.mergeTextures(x, y, t1, t2, ratio)`
 
 ### Tweak parameters
-You should get a pretty wierd result for now but as you can see, there is water and grass. Yey, all that we wanted! But maybe you would like something looking more like islands. First of all, you could use several noises with different scales as described [here](https://flafla2.github.io/2014/08/09/perlinnoise.html). You can combine them in several ways depending on what you are trying to do, by sum, by average, by multiplication.
+You should get a pretty wierd result for now but as you can see, there is water and grass. But maybe you would like something looking more like islands. First of all, you could use several noises with different scales as described [here](https://flafla2.github.io/2014/08/09/perlinnoise.html). You can combine them in several ways depending on what you are trying to do, by sum, by average, by multiplication.
 
 ![perlin noises 1D](https://flafla2.github.io/img/2014-08-09-perlinnoise/octave01.png)
 
@@ -54,7 +54,21 @@ You can also apply modifications on noises, maybe adjusting the contrast with `u
 
 ![contrast(value, factor) = (value - 0.5) * factor + 0.5](https://github.com/paullaffitte/lua-map-generator-workshop/blob/master/example/contrast.gif)
 
-### Improvements
-// temperature generation
-// humidity generation
-// biomes
+### Going further
+Once you got fine results, you may want to add some more details. You could try to use one more noise to generate temperature, that you can use to adjust colors consequently with a blue shift when it's cold, and a red shift when it's hot. You could also generate some snow on montains or icebergs in the ocean. On the same model, why not trying to generate humidity ?
+
+And what about biomes ? Now that you have temperature and humidity, you could try to define conditions on those both parameters to determine in what biome you are ! Let's imagine that we have two axis, the temperature is on the X axis and the humidity on the Y one. You can define a surface on the graph that describe a [biome](https://en.wikipedia.org/wiki/Biome) like on this one from wikipedia.
+![Climate_influence_on_terrestrial_biome](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Climate_influence_on_terrestrial_biome.svg/617px-Climate_influence_on_terrestrial_biome.svg.png)
+
+Well, it's now up to you to continue to tweak your generator, add new rules, and maybe even trying to [generate maps in 3 dimensions](https://www.redblobgames.com/maps/terrain-from-noise/) ?
+
+### Some links
+#### Perlin
+- [Understanding perlin noise](https://flafla2.github.io/2014/08/09/perlinnoise.html)
+- [Making maps with noise functions](https://www.redblobgames.com/maps/terrain-from-noise/)
+- [The book of shaders: Noise](https://thebookofshaders.com/11) (available in many languages including french)
+
+#### Vornoi
+- [Fantasy map generator](https://azgaar.github.io/Fantasy-Map-Generator/) - a webapp that help you creating map for fantasy worlds
+- [Procedural Terrain Generation With Voronoi Diagrams](https://squeakyspacebar.github.io/2017/07/12/Procedural-Map-Generation-With-Voronoi-Diagrams.html)
+- [The book of shaders: More noise](https://thebookofshaders.com/12) (available in many languages including french)
