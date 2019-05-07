@@ -72,5 +72,6 @@ Well, it's now up to you to continue to tweak your generator, add new rules, and
 
 #### Vornoi
 - [Fantasy map generator](https://azgaar.github.io/Fantasy-Map-Generator/) - a webapp that help you creating map for fantasy worlds
+- [Polygonal Map Generation for Games](http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation/)
 - [Procedural Terrain Generation With Voronoi Diagrams](https://squeakyspacebar.github.io/2017/07/12/Procedural-Map-Generation-With-Voronoi-Diagrams.html)
 - [The book of shaders: More noise](https://thebookofshaders.com/12) (available in many languages including french)
